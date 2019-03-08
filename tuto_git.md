@@ -27,24 +27,167 @@ In this schema the pointer of your <span style="color:#1c6600;">branch</span> is
 
 <h3>Two different visions</h3>
 
-You can understand the concept of branch and its modelisation with two visions.  
+You can understand the concept of <span style="color:#1c6600;">branch</span> and its modelisation with two visions.  
 Keep the best for you.
 
 <h3>Vision by pointer</h3>
 
-We can visualize a branch like a pointer on commit. Every commit has a parent commit so it's a chain of commit.  
-A branch is just a pointer on this chain.
+We can visualize a <span style="color:#1c6600;">branch</span> like a pointer on <span style="color:#8c00c0;">commit</span>. Every <span style="color:#8c00c0;">commit</span> has a parent <span style="color:#8c00c0;">commit</span> so it's a chain of <span style="color:#8c00c0;">commit</span>.  
+A <span style="color:#1c6600;">branch</span> is just the name of the pointer on this chain.
 
 <img src="assets/basic-branching-1.png"> 
 
+<br><br>
+
+When you create another <span style="color:#1c6600;">branch</span> with git checbout -b, you create a new pointer on this <span style="color:#1c6600;">branch</span>.
+
+<img src="assets/two-branches.png"> 
+
+In this example : git checkout -b testing
+
+<br><br>
+
+Git needs to know on wich <span style="color:#1c6600;">branch</span> / pointer you are, to know this you have a cursor name *HEAD*
+
+<img src="assets/head-to-testing.png"> 
+
+In this example : you are on the <span style="color:#1c6600;">branch</span> testing, when you used git checkout, you moved your HEAD cursor.
+
+<br><br>
+
+When you work, you create new <span style="color:#8c00c0;">commits</span>, these <span style="color:#8c00c0;">commits</span> append at the end of your chain.
+
+<img src="assets/advance-testing.png"> 
+
+In this example : you had create a new <span style="color:#8c00c0;">commit</span> identified by *87ab2* on the testing <span style="color:#1c6600;">branch</span>. When you committed, your <span style="color:#1c6600;">branch</span> pointer and your cursor move to this <span style="color:#8c00c0;">commit</span>. But the other <span style="color:#1c6600;">branch</span> pointer stay where there are. So you can have <span style="color:#1c6600;">branch</span> pointer behind.  
+Git pull bring back a pointer at the end of the chain.
+
+<br><br>
+
+If you would like come back to an old instant of your project, you can git checkout on a <span style="color:#1c6600;">branch</span> or a <span style="color:#8c00c0;">commit</span> identifier.
+
+<img src="assets/checkout-master.png"> 
+
+In this example : you had execute git checkout master  
+If you had execute git checkout *f30ab*, your HEAD will not attached to a <span style="color:#1c6600;">branch</span> and you could not git pull for bring back master at the end. 
+
+<br><br>
+
+When you work with other people, each worker can create a new <span style="color:#1c6600;">branch</span> and <span style="color:#8c00c0;">commit</span> on it. That create a split in the chain. 
+
+<img src="assets/advance-master.png"> 
+
+<br><br>
+
+Once the job is done on a <span style="color:#1c6600;">branch</span>, we would like bring back this job on the master <span style="color:#1c6600;">branch</span>.  
+To do this, we need to merge these branch with git merge.  
+When git merges two <span style="color:#1c6600;">branchs</span>, it creates a new <span style="color:#8c00c0;">commit</span> (commit merge) who has two parents : 
+- last <span style="color:#8c00c0;">commit</span> on master <span style="color:#1c6600;">branch</span>
+- last <span style="color:#8c00c0;">commit</span> on own new <span style="color:#1c6600;">branch</span>
+
+Becarefull this step can create some conflict.  
+A <span style="color:#1c6600;">branch</span> is juste a pointer on a <span style="color:#8c00c0;">commit</span> so if you delete the <span style="color:#1c6600;">branch</span>, doesn't matter your <span style="color:#8c00c0;">commit</span> still exist. But once the <span style="color:#1c6600;">branch</span> are delete, it's difficult to access to this <span style="color:#8c00c0;">commit</span>. 
+
+<img src="assets/basic-merging-2.png"> 
+
+In this example : we have merge the <span style="color:#1c6600;">branch</span> *iss53* in *master*
+git merge iss53  
+If in *C3*,*C4*,*C5* only diffent files are modified, you can't have a conflict.  
+But at the time where the same file is modified, you could have some conficts.
+
+<h2>Why rebase better than merge ?</h2>
+
+Merge : 
+
+<img src="assets/basic-rebase-2.png"> 
+
+Rebase :
+
+<img src="assets/basic-rebase-3.png"> 
+
+<h3>Readability</h3>
+
+We have seen a merge create a new <span style="color:#8c00c0;">commit</span> and it referes to two parents.  
+A rebase replay all <span style="color:#8c00c0;">commits</span> on the <span style="color:#1c6600;">branch</span> where we would like added our modifications.
+In term of readability is better because we have all <span style="color:#8c00c0;">commits</span> in the chain and not a bag of <span style="color:#8c00c0;">commits</span> who refer another <span style="color:#8c00c0;">commits</span> chain. 
+
+<h3>Import branch</h3>
+
+In some case we have a <span style="color:#1c6600;">branch</span> create from another <span style="color:#1c6600;">branch</span> like this schema
+
+<img src="assets/interesting-rebase-1.png"> 
+
+We have a <span style="color:#1c6600;">branch</span> server create from master and another <span style="color:#1c6600;">branch</span> client create from server.  
+Problem : How import the <span style="color:#8c00c0;">commits</span> *C8* and *C9* ? 
+
+The best way it's to replay only *C8* and *C9* at the end of the master <span style="color:#1c6600;">branch</span>.
+
+<img src="assets/interesting-rebase-2.png"> 
+
+In this exemple, we had execute git rebase client on the master <span style="color:#1c6600;">branch</span>.
+
 <h3>Vision by tree branch</h3>
+
+You can see a git project like a tree with these <span style="color:#1c6600;">branchs</span>.  
+The root of your tree is your first <span style="color:#8c00c0;">commit</span>.
+
+<img src="assets/tree.png"> 
+
+In a git project the trunk of your tree is the master <span style="color:#1c6600;">branch</span>.  
+A <span style="color:#1c6600;">branch</span> is composed by different type of <span style="color:#8c00c0;">commit</span> but every <span style="color:#8c00c0;">commit</span> grow your <span style="color:#1c6600;">branch</span>.
+In this schema : 
+- Blue and green dot : <span style="color:#8c00c0;">commit</span>
+- Red and orange dot : checkout
+
+When you create a git project with only one <span style="color:#8c00c0;">commit</span> you have this tree representation :
+
+<img src="assets/first-commit.png"> 
+
+In our example we have a bamboo, the trunk is representend by the master <span style="color:#1c6600;">branch</span> in green, commits are represented by orange dot and the great panda represent our position in the project.  
+Currently we are on the first <span style="color:#8c00c0;">commit</span>.
+
+<br><br>
+
+<img src="assets/git-commit.png"> 
+
+In this case we add a new feature *user*, we create a new commit *user commit*. 
+Our bamboo grow with <span style="color:#8c00c0;">commits</span> and the panda follow our <span style="color:#8c00c0;">commits</span>.
+
+<br><br>
+
+It's possible to create different <span style="color:#1c6600;">branch</span> for working with other people.  
+Each worker have one panda and can work on the same <span style="color:#1c6600;">branch</span> as you.
+
+<img src="assets/git-checkout.png"> 
+
+In our example we have create a new <span style="color:#1c6600;">branch</span> *admin* and it was create from *user commit*.  
+We can see our panda doesn't have a <span style="color:#8c00c0;">commit</span> in fornt, because Git doesn't create a <span style="color:#8c00c0;">commit</span> when it create a <span style="color:#1c6600;">branch</span>.
+
+<br><br>
+
+When we would like work on several feature we can create many <span style="color:#1c6600;">branchs</span> with different <span style="color:#8c00c0;">commit</span> on it.
+
+<img src="assets/git-branch.png"> 
+
+At this point, we would like come back the <span style="color:#8c00c0;">commits</span> from the admin <span style="color:#1c6600;">branch</span> on the master <span style="color:#1c6600;">branch</span>. 
+
+<img src="assets/git-merge.png"> 
+
+The command git merge create a new <span style="color:#8c00c0;">commit</span> attached to our admin <span style="color:#1c6600;">branch</span>.  
+If you delete the admin <span style="color:#1c6600;">branch</span>, you don't loose your <span style="color:#8c00c0;">commit</span>, you forget just how to come on.
+
+<br><br>
+
+You can also use git rebase to come back your features. The result is similar but gives a better overview of your project. The rebase replay your <span style="color:#8c00c0;">commit</span> on another <span style="color:#1c6600;">branch</span>.
+
+<img src="assets/git-rebase.png"> 
 
 <h2><span style="color:#8c00c0;">Commit</span></h2>
  
 It represent an instant of your project named also snapshot.   
 Git store modifications by instant of project and not by difference.   
 A <span style="color:#8c00c0;">commit</span> contains a tree of all modify files, an author, his name, his reference, his parent and some other metadata.  
-A parent of commit is the previous version of a <span style="color:#8c00c0;">commit</span>.
+A parent of <span style="color:#8c00c0;">commit</span> is the previous version of a <span style="color:#8c00c0;">commit</span>.
 
 <img src="assets/commit-and-tree.png">  
 
@@ -52,12 +195,11 @@ In this schema *98ca9* is the reference of the <span style="color:#8c00c0;">comm
 A <span style="color:#8c00c0;">commit</span> construct a tree of files references. In tree we find only the list of modifing files
 
 To create a <span style="color:#8c00c0;">commit</span>, we may follow this three steps :  
-1) Add files to the commit tree where we would like save modifications (git add)
-2) Name and save the commit (git commit)
-3) Push the commit to our version manager platform (git push)
+1) Add files to the <span style="color:#8c00c0;">commit</span> tree where we would like save modifications (git add)
+2) Name and save the <span style="color:#8c00c0;">commit</span> (git commit)
+3) Push the <span style="color:#8c00c0;">commit</span> to our version manager platform (git push)
 
 <img src="assets/commit cycle life.png">  
-
 
 <h2>Command Git</h2>
 
@@ -143,6 +285,27 @@ git pull
 ```
 
 Becarefull you can't pull if you are some files not committed.
+
+<h2><span style="color:#fa7811;">git merge</span></h2>
+
+Merge a branch with another branch. the branch where you are will be merge with the branch in parameter.
+
+```
+git merge my_branch
+```
+
+Becarefull you can rise conflicts.
+
+<h2><span style="color:#fa7811;">git rebase</span></h2>
+
+Replay all commits of a branch on another branch.  
+The result of this command is like git merge.
+
+```
+git rebase branch_to_bring_back
+```
+
+Becarefull you can rise conflicts.
 
 <br><br><br><br>
 For the Windows guys : 
