@@ -1,20 +1,20 @@
-<h1>GIT</h1>
+# GIT
 
 Hey, this is my first tuto about Git !  
 Let’s go discover Git and its environment.  
-To begin not forget to install Git on your computer, on Windows I advise to choose **GitBash** software.  
+To begin, don't forget to install Git on your computer, on Windows I advise to choose **GitBash** software.  
 For Linux no problem, Git is already installed.  
 If you are prepared, you can start !
 
 Before open a console, create an account on :octocat:Github, Bitbucket or Gitlab.  
 Once the account is created, create a new <span style="color:#35d5b6;">repository</span> with the name : **tutogit**
 
-<h2>Lexicon</h2>
+## Lexicon
 
-<h2><span style="color:#35d5b6;">Repository</span></h2>
+## <span style="color:#35d5b6;">Repository</span>
 It represent in general a project. In your <span style="color:#35d5b6;">repository</span> we will find all files of your project.
 
-<h2><span style="color:#1c6600;">Branch</span></h2>
+## <span style="color:#1c6600;">Branch</span>
 
 It represent a timeline of <span style="color:#8c00c0;">commit</span>.  
 You can create many <span style="color:#1c6600;">branch</span> with many different versions of your project.  
@@ -25,12 +25,12 @@ On this schema the master <span style="color:#1c6600;">branch</span> contains th
 Every <span style="color:#1c6600;">branch</span> has a pointer, your branch pointer can be before the end of your <span style="color:#1c6600;">branch</span>.  
 In this schema the pointer of your <span style="color:#1c6600;">branch</span> is at the end.
 
-<h3>Two different visions</h3>
+### Two different visions
 
 You can understand the concept of <span style="color:#1c6600;">branch</span> and its modelisation with two visions.  
 Keep the best for you.
 
-<h3>Vision by pointer</h3>
+### Vision by pointer
 
 We can visualize a <span style="color:#1c6600;">branch</span> like a pointer on <span style="color:#8c00c0;">commit</span>. Every <span style="color:#8c00c0;">commit</span> has a parent <span style="color:#8c00c0;">commit</span> so it's a chain of <span style="color:#8c00c0;">commit</span>.  
 A <span style="color:#1c6600;">branch</span> is just the name of the pointer on this chain.
@@ -85,17 +85,17 @@ When git merges two <span style="color:#1c6600;">branchs</span>, it creates a ne
 - last <span style="color:#8c00c0;">commit</span> on master <span style="color:#1c6600;">branch</span>
 - last <span style="color:#8c00c0;">commit</span> on own new <span style="color:#1c6600;">branch</span>
 
-Becarefull this step can create some conflict.  
+Becarefull this step can create some <span style="color:#c40813;">conflict</span>.  
 A <span style="color:#1c6600;">branch</span> is juste a pointer on a <span style="color:#8c00c0;">commit</span> so if you delete the <span style="color:#1c6600;">branch</span>, doesn't matter your <span style="color:#8c00c0;">commit</span> still exist. But once the <span style="color:#1c6600;">branch</span> are delete, it's difficult to access to this <span style="color:#8c00c0;">commit</span>. 
 
 <img src="assets/basic-merging-2.png"> 
 
 In this example : we have merge the <span style="color:#1c6600;">branch</span> *iss53* in *master*
 git merge iss53  
-If in *C3*,*C4*,*C5* only diffent files are modified, you can't have a conflict.  
+If in *C3*,*C4*,*C5* only diffent files are modified, you can't have a <span style="color:#c40813;">conflict</span>.  
 But at the time where the same file is modified, you could have some conficts.
 
-<h2>Why rebase better than merge ?</h2>
+## Why rebase better than merge ?
 
 Merge : 
 
@@ -105,13 +105,13 @@ Rebase :
 
 <img src="assets/basic-rebase-3.png"> 
 
-<h3>Readability</h3>
+### Readability
 
 We have seen a merge create a new <span style="color:#8c00c0;">commit</span> and it referes to two parents.  
 A rebase replay all <span style="color:#8c00c0;">commits</span> on the <span style="color:#1c6600;">branch</span> where we would like added our modifications.
 In term of readability is better because we have all <span style="color:#8c00c0;">commits</span> in the chain and not a bag of <span style="color:#8c00c0;">commits</span> who refer another <span style="color:#8c00c0;">commits</span> chain. 
 
-<h3>Import branch</h3>
+### Import branch
 
 In some case we have a <span style="color:#1c6600;">branch</span> create from another <span style="color:#1c6600;">branch</span> like this schema
 
@@ -126,7 +126,7 @@ The best way it's to replay only *C8* and *C9* at the end of the master <span st
 
 In this exemple, we had execute git rebase client on the master <span style="color:#1c6600;">branch</span>.
 
-<h3>Vision by tree branch</h3>
+### Vision by tree branch
 
 You can see a git project like a tree with these <span style="color:#1c6600;">branchs</span>.  
 The root of your tree is your first <span style="color:#8c00c0;">commit</span>.
@@ -182,7 +182,7 @@ You can also use git rebase to come back your features. The result is similar bu
 
 <img src="assets/git-rebase.png"> 
 
-<h2><span style="color:#8c00c0;">Commit</span></h2>
+## <span style="color:#8c00c0;">Commit</span>
  
 It represent an instant of your project named also snapshot.   
 Git store modifications by instant of project and not by difference.   
@@ -201,9 +201,61 @@ To create a <span style="color:#8c00c0;">commit</span>, we may follow this three
 
 <img src="assets/commit cycle life.png">  
 
-<h2>Command Git</h2>
+## <span style="color:#c40813;">Conflict</span>
 
-<h2><span style="color:#fa7811;">git status</span></h2>
+A <span style="color:#c40813;">conflict</span> is a Git error, it appears when you try to merge two <span style="color:#1c6600;">branchs</span> and in these <span style="color:#1c6600;">branchs</span> you have modified the same file.  
+Git can't find which file would you like to keep.  
+To continue, you may resolve <span style="color:#c40813;">conflicts</span>.  
+
+To know which files are in <span style="color:#c40813;">conflict</span> you can use git status :
+```
+$ git status
+On branch master
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+
+    both modified:      index.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+In this example, index.html is in <span style="color:#c40813;">conflict</span>.  
+*both modfied* means this file is modified on the both <span style="color:#1c6600;">branch</span>.  
+
+To fix a <span style="color:#c40813;">conflict</span> you may open files in <span style="color:#c40813;">conflict</span> and change inside lines you would keep or remove.  
+
+In file, <span style="color:#c40813;">conflicts</span> are always marked with the following syntax :
+
+```
+<<<<<<< HEAD:file
+code of the branch where you are
+======
+code of the branch that you want merge
+>>>>>>> branch_to_merge:file
+```
+
+You may choose between the first part and the second part.  
+Some tools and editors can help you to fix more quickly.  
+
+<img src='assets/basic-merging-2.png'>
+
+```
+<<<<<<< HEAD:index.html
+<div id="footer">contact : email.support@github.com</div>
+======
+<div id="footer">
+ please contact us at support@github.com
+</div>
+>>>>>>> iss53:index.html
+```
+
+In this example, we would like to merge *iss53* in *master* but we have a <span style="color:#c40813;">conflict</span> in *index.html*.  
+
+## Command Git
+
+## <span style="color:#fa7811;">git status</span>
 Display the state of your git project
 
 ```
@@ -234,7 +286,7 @@ If you aren't in a git project the following error will be display
 fatal: not a git repository (or any of the parent directories): .git
 ```
 
-<h2><span style="color:#fa7811;">git clone</span></h2>
+## <span style="color:#fa7811;">git clone</span>
 Download your <span style="color:#35d5b6;">repository</span> where you are with your console  
 
 ```
@@ -247,7 +299,7 @@ For example if you would like download this project you can execute :
  git clone https://github.com/SamuelPelletier/tuto-Git.git
 ```
 
-<h2><span style="color:#fa7811;">git add</span></h2>
+## <span style="color:#fa7811;">git add</span>
 Add file in a <span style="color:#8c00c0;">commit</span>.
 
 ```
@@ -260,7 +312,7 @@ Add all files who are modified or untracked.
 git add -A
 ```
 
-<h2><span style="color:#fa7811;">git commit</span></h2>
+## <span style="color:#fa7811;">git commit</span>
 
 Close and named the commit.  
 When the commit is closed, git add command appends file in a new commit.
@@ -269,14 +321,14 @@ When the commit is closed, git add command appends file in a new commit.
 git commit -m"my commit title"
 ```
 
-<h2><span style="color:#fa7811;">git push</span></h2>
+## <span style="color:#fa7811;">git push</span>
 
 Send all commits to our version manager platform.  
 
 ```
 git push
 ```
-<h2><span style="color:#fa7811;">git pull</span></h2>
+## <span style="color:#fa7811;">git pull</span>
 
 Get all new commits from your version manager platform. 
 
@@ -286,7 +338,7 @@ git pull
 
 Becarefull you can't pull if you are some files not committed.
 
-<h2><span style="color:#fa7811;">git merge</span></h2>
+## <span style="color:#fa7811;">git merge</span>
 
 Merge a branch with another branch. the branch where you are will be merge with the branch in parameter.
 
@@ -294,9 +346,9 @@ Merge a branch with another branch. the branch where you are will be merge with 
 git merge my_branch
 ```
 
-Becarefull you can rise conflicts.
+Becarefull you can rise <span style="color:#c40813;">conflicts</span>.
 
-<h2><span style="color:#fa7811;">git rebase</span></h2>
+## <span style="color:#fa7811;">git rebase</span>
 
 Replay all commits of a branch on another branch.  
 The result of this command is like git merge.
@@ -305,7 +357,7 @@ The result of this command is like git merge.
 git rebase branch_to_bring_back
 ```
 
-Becarefull you can rise conflicts.
+Becarefull you can rise <span style="color:#c40813;">conflicts</span>.
 
 <br><br><br><br>
 For the Windows guys : 
