@@ -1,7 +1,7 @@
 # GIT
 
 Hey, this is my first tuto about Git !  
-Let’s go discover Git and its environment.  
+Let’s discover Git and its environment.  
 To begin, don't forget to install Git on your computer, on Windows I advise to choose **GitBash** software.  
 For Linux no problem, Git is already installed.  
 If you are prepared, you can start !
@@ -338,6 +338,20 @@ git pull
 
 Becarefull you can't pull if you are some files not committed.
 
+## <span style="color:#fa7811;">git checkout</span>
+
+Change your position to another branch.
+
+```
+git merge my_branch
+```
+
+If you add -b parameter, you create a new branch (In french : tiret b comme bouvelle branche)
+
+```
+git merge -b my_branch
+```
+
 ## <span style="color:#fa7811;">git merge</span>
 
 Merge a branch with another branch. the branch where you are will be merge with the branch in parameter.
@@ -417,6 +431,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 ```
 
 Git tells us we have an untracked file named *index.html*.  
+If you have a colorated console, you can note index.html is in red, red means your file isn't in a commit.   
 It says too, *nothing added to commit* this sentence means our <span style="color:#8c00c0;">commit</span> is empty.  
 But it advises *use "git add \<file>..." to include in what will be committed*.  
 In order to save the creation of our index.html, we must use the command advise and below.
@@ -444,11 +459,11 @@ Changes to be committed:
         new file:   index.html
 ```
 
-We observe *index.html* is in *Changes to be comitted* so *index.html* is in the file list will be send to our version manager platform  
+We observe *index.html* is in *Changes to be comitted* so *index.html* is in the file list will be send to our version manager platform, its color change to green for represent your file in a commit  
 Git informs us that we can rollback our git add with git reset, we will see this command after.
 
 Now we have one file in our commit but the commit is open yet.  
-We need to close the commit for send it to our version manager platform  
+We may close the commit to send it to our version manager platform  
 
 In our case we create our first commit
 ```
@@ -459,4 +474,159 @@ We will send our new creation file to our version manager platform
 ```
 git push
 ```
+
+Just with the commands before you can work alone on your one compture. 😢  
+
+If you would like work on a git project alone but on many computer you have needed the following command :  
+```
+git pull
+```
+
+Before you start worked on another computer, you may use this command to get back your code on this computer.  
+
+Step 1 : Code on your first computer  
+<img src='assets/work-computer1.png'>
+
+<br><br>
+
+Step 2 : Send your code to your version manager platform  
+<img src='assets/work-manager.png'>
+
+<br><br>
+
+Step 3 : Get back your code on your second computer for work   
+<img src='assets/work-computer2.png'>
+
+<br><br>
+
+Now you have found a friend to work with you.  
+No problem, we will create two branchs, one for you and one for your friend.  
+If you haven't a friend we will simulate one.  
+  
+I present you :  
+<br>
+
+<img style="width:100px;height:auto;margin-left:20px;" src='assets/Companion Cube.png'>  
+
+The Companion Cube !  
+
+"*This Weighted Companion Cube will accompany you. Please take care of it.*"
+<br>
+
+```
+git checkout -b my_branch
+```
+```
+git checkout -b my_companion_cube_branch
+```
+
+You are on the companion cube branch, we will simulate a collaborative work.  
+
+```
+touch companion_cube.html
+```
+```
+git add -A
+```
+```
+git commit -m'Add companion cube page'
+```
+```
+git push
+```
+
+<br>
+
+Now we will return on your branch and get back the modifications create by your new friend.  
+```
+git checkout my_branch
+```
+
+We will use git merge to merge your friend branch into your branch.  
+
+```
+git merge my_companion_cube_branch
+```
+
+Now your branch is at the same progress as your friend.  
+
+It was easy but it's not always the case. We will see conflicts.  
+
+We will write something in our file :  
+```
+echo "add some text" >> index.html
+```
+```
+git add -A
+```
+```
+git commit -m'Add text in index.html'
+```
+```
+git push
+```
+```
+git checkout my_companion_cube_branch
+```
+```
+rm index.html;touch index.html; echo "add some cube text" >> index.html
+```
+```
+git add -A
+```
+```
+git commit -m'Add text in index.html'
+```
+```
+git push
+```
+
+We will try to merge these two branchs like before.
+```
+git merge my_branch
+```
+```
+Auto-merging index.html
+CONFLICT (add/add): Merge conflict in index.html
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+Check the status of your branch :  
+```
+git status
+```
+```
+On branch my_companion_cube_branch
+Your branch is ahead of 'origin/my_companion_cube_branch' by 1 commit.
+  (use "git push" to publish your local commits)
+
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+
+        both added:      index.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+You may resolve the conflict to continue.  
+
+Once the conflict is fixed, add your modification to the commit : 
+```
+git add -A
+```
+or 
+```
+git add -index.html
+```
+
+Close the commit with :  
+```
+git commit
+```
+
+When Vim editor opens juste press enter or you can left with *:q*.  
 
