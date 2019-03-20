@@ -13,3 +13,9 @@
 A simple plan for some course :
 
  [Tuto FR](plan.md)
+
+ ## TP Fr
+
+Practical work
+
+[TP FR](tp.fr.md)
