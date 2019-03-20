@@ -1,103 +1,104 @@
 # GIT
 
-Hey, this is my first tuto about Git !  
-Let’s discover Git and its environment.  
-To begin, don't forget to install Git on your computer, on Windows I advise to choose **GitBash** software.  
-For Linux no problem, Git is already installed.  
-If you are prepared, you can start !
+Salut, C'est mon tout premier tuto Git !  
+C'est partit pour découvrir Git et son environement.  
+Pour commencer n'oubliez pas d'installer Git sur votre ordinateur, sur Windows je vous conseille d'utiliser **GitBash**.  
+Pour Linux aucun problème, Git est déjà installé par défault.  
+Si vous êtes prêt, vous pouvez commencer !
 
-Before open a console, create an account on :octocat:Github, Bitbucket or Gitlab.  
-Once the account is created, create a new repository with the name : **tutogit**
+Avant d'ouvrir une invite de commande, créé un compte sur :octocat:Github, Bitbucket ou Gitlab.  
+Une fois le compte créé, créé un nouveau "répertoire" (repository) avec le nom suivant : **tutogit**
 
-## Lexicon
+## Lexique
 
-## Repository
+## Répertoire
 
-It represent in general a project. In your repository we will find all files of your project.
+Un répertoire représente en général un projet. Dans votre répertoire vous allez trouver tous les fichiers de votre projet.
 
-## Branch
+## Branche
 
-It represent a timeline of commit.  
-You can create many branch with many different versions of your project.  
+Une branche représente une succession de commit.  
+Vous pouvez créée plusieurs branches qui contienne chacune des version différente de votre projet.  
 
 <img src="assets/branch-and-history.png">  
 
-On this schema the master branch contains three commits or snapshot (A,B,C), the numbers above a snpashot are the identifier.  
+Sur ce schéma la branche nommé *Master* contient trois commits ou instantanés (A,B,C), le nombre au dessus des instantanés sont leus identifiants.  
 
-### Two different visions
+### Deux visions différentes
 
-You can understand the concept of branch with two visions.  
-Keep the best for you.
+Vous pouvez comprendre le concept de branche avec deux visions.  
+Retenez celle qui vous conviens le mieux.
 
-### Vision by pointer
+### Vision par pointeur
 
-In this version a branch is a pointer (ex: Master) on a commit.  
-Every commit have a parent who is a commit so it's a chain of commit.  
-A branch is just the name of the pointer on this chain.
+Cette vision est la plus proche du fonctionnement de Git.
+
+Dans cette vision une branche est un pointeur avec un nom (ex: Master) qui fait référence a un commit.  
+Tout les commits ont au moins un parent qui est commit, cela signifie que c'est une chaîne de commit.  
+Une branche n'est qu'un nom de pointeur sur cette chaîne.
 
 <img src="assets/basic-branching-1.png"> 
 
 <br><br>
 
-When you create another branch with git checbout -b, you create a new pointer on this branch.
+Quand vous créez une nouvelle branche avec git checbout -b, vous créez en réalité un nouveau pointeur avec un nom à l'emplacement où vous êtes.
 
 <img src="assets/two-branches.png"> 
 
-In this example : git checkout -b testing
+Dans cet exemple: git checkout -b testing
 
 <br><br>
 
-Git needs to know on wich branch / pointer you are, to know this you have a cursor name *HEAD*.  
-You can move on different branches beacuse you are represented by a pointer who reference in general a branch.
+Git a besoin de savoir sur quelle branche / pointeur vous êtes. Pour cela vous êtes vous même un pointeur nommé *HEAD*.  
+Vous pouvez vous dépacer de branche en branche facilement car vous êtes représenté par un pointeur qui pointe en général sur des branches.
 
 <img src="assets/head-to-testing.png"> 
 
-In this example : you are on the branch testing, when you used git checkout, you moved your HEAD cursor.  
-
+Dans cet exemple : vous êtes sur la branche *testing*, quand vous utilisez git checkout, vous déplacez votre pointeur *HEAD*.
 
 <br><br>
 
-When you work, you create newcommits, these commits append at the end of your chain.
+Quand vous travaillez, vous faites des nouveaux commits, ces commits sont ajoutés à la fin de la chaîne.
 
 <img src="assets/advance-testing.png"> 
 
-In this example : you had create a new commit identified by *87ab2* on the testing branch. When you committed, your branch pointer and your cursor move to this commit. But the other branch pointer stay where there are. So you can have branch pointer behind.  
-Git pull bring back a pointer at the end of the chain.
+Dans cet exemple : vous avez créé un nouveau commit identifié par l'id *87ab2* sur la branche testing. Quand vous commitez, votre pointeur de branche et votre pointeur *HEAD* se déplace vers ce nouveau commit automatiquement. Mais les autres branches reste à leur place. Par conséquent vous avez des branches qui sont en retard.  
+Git pull raméne un pointeur à la fin de la chaîne.
 
 <br><br>
 
-If you would like come back to an old instant of your project, you can git checkout on a branch or a commit.
+Si vous voulez revenir a un instant précédant, vous pouvez git checkout sur une branche sou sur un commit.
 
 <img src="assets/checkout-master.png"> 
 
-In this example : you had execute git checkout master  
-If you had execute git checkout *f30ab*, your HEAD will not attached to a branch and you could not git pull for bring back master at the end. 
+Dans cet exemple : vous avez exécuté git checkout master  
+Si vous avez exécuté git checkout *f30ab*, votre HEAD est détaché (d'une branche) et vous ne pourrez pas faire de git pull pour amener le pointeur à la fin de la chaîne vu que vous n'êtes plus sur une branche. 
 
 <br><br>
 
-When you work with other people, each worker can create a branch and commit on it. That create a split in the chain. 
+Quand vous travaillez avec d'autre personne, chaque collègue peut créé des branches et de commiter dessus. Cela peut séparer la chaîne principale en plusieurs morceaux.   
 
 <img src="assets/advance-master.png"> 
 
 <br><br>
 
-Once the job is done on a branch, we would like bring back this job on the master branch.  
-To do this, we need to merge these branch with git merge command.  
-When git merges two branchs, it creates a new commit (commit merge) who has two parents : 
-- last commit on master branch
-- last commit on own new branch
+Une fois le travail terminé sur une branche, nous voulons ramener le travail effectué sur la branche master.  
+Pour faire cela il faut que nous fusionnons les branches avec la commande git merge.    
+Quand git fusionne deux branches, il créé un nouveau commit (commit merge) qui a deux parents : 
+- le dernier commit de la branche master
+- le dernier commit de votre nouvelle branche
 
-Becarefull this step can create some conflict.  
-A branch is juste a pointer on a commit so if you delete the branch, doesn't matter your commit still exist. But once the branch are delete, it's difficult to access to this commit. 
+Attention cette étape peut générer des conflits.  
+Nous avons vu qu'une branche n'est en réalité qu'un pointeur sur un commit donc si vous supprimez une branche cela n'a aucune importance car vous n'avez supprimer que le pointeur mais pas les commits créés. Mais une fois la branche supprimé il est plus difficile d'accéder à ces commits.  
 
 <img src="assets/basic-merging-2.png"> 
 
-In this example : we have merge the branch *iss53* in *master*
+Dans cet exemple : vous avez fusionné *iss53* dans *master*
 git merge iss53  
-If in *C3*,*C4*,*C5* only diffent files are modified, you can't have a conflict.  
-But if the same file is modified, you could have some conficts.
+Si *C3*,*C4*,*C5* ne sont que des fichiers différents, vous n'aurez pas de conflit.  
+Mais si le même fichier est modifier, vous risquez d'avoir des conflits.  
 
-## Why rebase better than merge ?
+## Pourquoi rebaser plutot que de merger ?
 
 Merge : 
 
@@ -107,103 +108,102 @@ Rebase :
 
 <img src="assets/basic-rebase-3.png"> 
 
-### Readability
+### Lisibilité
 
-We have seen a merge create a commit and it referes to two parents.  
-A rebase replay all commits on the branch from another branch.
-In term of readability is better because we have all commits in the chain and not a bag of commits who refer another commits chain. 
+Nous avons vu comment qu'un commit de merge fait référence a deux parents.   
+Un rebase rejoue tous les commits sur une branche depuis une autre branche.
+En therme de lisibilité, le rebase est meilleure car l'ensemble des commits apparaissent dans la branche lors du rebase alors qu'avec un merge nous disposerons que d'un gros commit qui nous renvois sur la branche qui a été mergé. 
 
-### Import branch
+### Importer une branche
 
-In some case we have a branch create from another branch like this schema
+Dans certain cas vous avez créé une autre branche comme sur ce schéma.  
 
 <img src="assets/interesting-rebase-1.png"> 
 
-We have a branch server create from master and another branch client create from server.  
-Problem : How import the commits *C8* and *C9* ? 
+Vous avez une branche nommée *server* créée depuis la branche *master*, vous avez également une branche *client* créée depuis la branche *server*.  
+Problème : Comment importer *C8* et *C9* ?
 
-The best way it's to replay only *C8* and *C9* at the end of the master branch.
+La meilleure strategie est de rejouer les commits *C8* et *C9* à la fin de la branche master.  
 
 <img src="assets/interesting-rebase-2.png"> 
 
-In this exemple, we had execute git rebase client on the master branch.
+Dans cet exemple, vous avez exécuté sur la branche master git rebase client.  
 
-### Vision by tree branch
+### Vision par branche d'arbre
 
-You can see a git project like a tree with these branchs.  
-The root of your tree is your first commit.
+Vous pouvez voir un projet git comme un arbre qui pousse.   
+La racine de votre arbre c'est le commit initial.
 
 <img src="assets/tree.png"> 
 
-In a git project the trunk of your tree is the master branch.  
-A branch is composed by different commits who grow your branch.
-In this schema : 
-- Blue and green dot : commit
-- Red and orange dot : checkout
+Dans un projet git le tronc  de votre arbre est la branche master car c'est la première branche.  
+Une branche est composée par différent commit qui font grandir votre arbre.  
+Dans ce schéma :  
+- Les points bleus et verts sont des commits
+- Les points rouges et oranges représentent les création de branches
 
-When you create a git project with only one commit you have this tree representation :
+Quand vous créé un projet git avec seulement un commit, vous obtenez cette représentation :  
 
 <img src="assets/first-commit.png"> 
 
-In our example we have a bamboo, the trunk is representend by the master branch in green, commits are represented by orange dot and the great panda represent our position in the project.  
-Currently we are on the first commit.
+Dans cet exemple : nous avons un bamboo, le tronc est représenté par le branche master en vers, les commits sont resprésenté par les points oranges et le super panda représente votre position c'est à dire la *HEAD*.  
+Actuellement vous êtes sur le premier commit.  
 
 <br><br>
 
 <img src="assets/git-commit.png"> 
 
-In this case we add a new feature *user*, we create a commit *user commit*. 
-Our bamboo grow with commits and the panda follow our commits.
+Dans ce cas vous souahaitez ajouter une nouvelle fonctionnalité *user*, pour cela vous créez un nouveau commit *user commit* contenant votre fonctionnalité.  
+Votre bamboo grandit avec les commits et le panda suit les commits.  
 
 <br><br>
 
-It's possible to create different branch for working with other people.  
-Each worker have one panda and can work on the same branch as you.
+Il est possible de créé différentes branches pour travailler à plusieurs.  
+Chaque collègues a son propre panda et peut travailler sur la même branche que vous.
 
 <img src="assets/git-checkout.png"> 
 
-In our example we have create a branch *admin* and it was create from *user commit*.  
-We can see our panda doesn't have a commit in front, because Git doesn't create a commit when it create a branch.
+Dans cet exemple vous avez créé une branche *admin* provenant du commit *user commit*.  
+Nous remarquons que votre panda n'a pas de commit face à lui car Git ne créé pas de commit lors d'une création de branche.  
 
 <br><br>
 
-When we would like work on several feature we can create many branchs with different commit on it.
+Quand vous souhaitez travailler sur plusieurs fonctionnalités, vous pouvez créé plusieurs branches avec différents commits dessus.  
 
 <img src="assets/git-branch.png"> 
 
-At this point, we would like bring back the commits from the admin branch on the master branch. 
+A ce moment, vous souhaitez ramener les commits de votre branche admin sur la branche master.  
 
 <img src="assets/git-merge.png"> 
 
-The command git merge create a commit attached to our admin branch.  
-If you delete the admin branch, you don't loose your commit, you forget just how to come on.
+La command git merge créé un commit attaché à vore branche admin.  
+Si vous supprimez la branche admin, vous ne perdez pas les commits qui sont dessus, vous oubliez simplement le chemin pour y accéder.  
 
 <br><br>
 
-You can also use git rebase to bring back your features. The result is similar but gives a better overview of your project. The rebase copy your commit at the end of another branch.
+Vous pouvez aussi utiliser git rebase pour ramener vos fonctionnalités. Le résultat est similaire mais permet d'avoir une meilleure vue de votre projet. Un rebase permet de copier à la fin tous les commits de différence d'une branche à une autre.  
 
 <img src="assets/git-rebase.png"> 
 
 ## Commit
  
-It represent an instant of your project named also snapshot.   
-Git store modifications by instant of project and not by difference.   
-A commit contains a tree of all modify files, an author, his name, his reference, his parent and some other metadata.  
-A parent of commit is the previous version of a commit.
+Un commit représente un instant du projet  nommé également instantané (snapshot).  
+Git enregistre les modifications par instant comme une photo au lieu de calculer des différences.  
+Un commit contient un arbre de fichier modifier, un auteur, un nom, un identifiant, un parent et d'autre informations.   
+Le parent d'un commit est l'instantané précédent donc le commit d'où on vient.  
 
 <img src="assets/commit-and-tree.png">  
 
-In this schema *98ca9* is the reference of the commit.  
-A commit construct a tree of files references. In tree we find only the list of modifing files
+Dans ce schéma *98ca9* est l'identifiant du commit.   
 
-To create a commit, we may follow this three steps :  
-1) Add files to the commit tree where we would like save modifications (git add)
-2) Name and save the commit (git commit)
-3) Push the commit to our version manager platform (git push)
+Pour créé un commit, vous devez suivre les étapes suivantes : 
+1) Ajouter les fichiers que vous souhaitez sauvegardé au commit (git add)
+2) Nommer, verouiller et sauvegarder le commit (git commit)
+3) Envoyer les modifications dans votre platerfome de versionning (git push)
 
 <img src="assets/commit cycle life.png">  
 
-## Conflict
+## Conflit
 
 A conflict is a Git error, it appears when you try to merge two branchs and in these branchs you have modified the same file.  
 Git can't find which file would you like to keep.  
