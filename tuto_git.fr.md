@@ -205,11 +205,11 @@ Pour créé un commit, vous devez suivre les étapes suivantes :
 
 ## Conflit
 
-A conflict is a Git error, it appears when you try to merge two branchs and in these branchs you have modified the same file.  
-Git can't find which file would you like to keep.  
-To continue, you may resolve conflicts.  
+Un conflit est une erreur provenant de git, elle apparait quand vous demandez a git de fusionner des fichiers contenant des modifications différentes.  
+Git ne peut pas connaitre quelles modifications vous souhaitez garder.  
+Pour continuer, il vous faut résoudre les conflits.  
 
-To know which files are in conflict you can use git status :
+Pour connaitre quels sont les fichiers en conflit, vous pouvez utiliser git status :  
 ```
 $ git status
 On branch master
@@ -223,23 +223,23 @@ Unmerged paths:
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
-In this example, index.html is in conflict.  
-*both modfied* means this file is modified on the both branch.  
+Dans cet exemple, index.html est en conflit.  
+*both modfied* signifie que ce fichier a été modifier sur les deux branches.    
 
-To fix a conflict you may open files in conflict and change inside lines you would keep or remove.  
+Pour corriger ce conflit, vous devez ouvrir le fichier en question et choisir les lignes que vous souhaitez garder ou enlever.  
 
-In file, conflicts are always marked with the following syntax :
+Dans un fichier, les conflits sont toujours indiquer avec la syntaxe suivante:   
 
 ```
 <<<<<<< HEAD:file
-code of the branch where you are
+code sur la branche où vous êtes
 ======
-code of the branch that you want merge
+code sur la branche que vous souhaitez fusionner
 >>>>>>> branch_to_merge:file
 ```
 
-You may choose between the first part and the second part.  
-Some tools and editors can help you to fix more quickly.  
+Vous devez choisir entre le premier ou le second block.   
+Des outils et des editeurs peuvent vous aider a corriger les conflits plus rapidement.     
 
 <img src='assets/basic-merging-2.png'>
 
@@ -253,19 +253,19 @@ Some tools and editors can help you to fix more quickly.
 >>>>>>> iss53:index.html
 ```
 
-In this example, we would like to merge *iss53* in *master* but we have a conflict in *index.html*.  
+Dans cet exemple, vous souhaitez fusionner *iss53* dans *master* mais vous avez un conflit dans le fichier *index.html*.  
 
 ## Gitignore
 
-## Command Git
+## Commande Git
 
 ## git status
-Display the state of your git project
+Affiche votre état courant ainsi que celle de votre emplacement (commit, branche)
 
 ```
 git status
 ```
-The following response is the simplest response
+Le retour suivant est le retour le plus courant quand tout ce passe bien.  
 ```
 On branch master
 Your branch is up to date with 'origin/master'.
@@ -273,53 +273,52 @@ Your branch is up to date with 'origin/master'.
 nothing to commit, working tree clean
 ```
 
-We will look line by line this response :  
+Nous allons eclaircir cette réponse ligne par ligne :   
 1) *On branch master*  
-   Git indicated you are on a branch named *master*
+   Git indique que vous êtes sur la branche nommée *master*
 2) *Your branch is up to date with 'origin/master'.*  
-   It indicated the exact state of your branch  
-   *origin* represent your version manager platform  
-   *origin/master* represent the branch with the name *master* in your version manager platform  
+   Il indique également l'état exacte de cette branche  
+   *origin* représente votre platerforme de versionning 
+   *origin/master* représente la branche nommée *master* dans votre plateforme de versionning
 3) *nothing to commit, working tree clean*  
-   Nothing to commit means you are any modify files  
-   Working tree clean means the same things in this case
+   Cela signifie que vous n'avez aucun fichier modifier
    
 
-If you aren't in a git project the following error will be display
+Si vous n'êtes pas dans un projet git, l'erreur suivante apparaitrait
 ```error
 fatal: not a git repository (or any of the parent directories): .git
 ```
 
 ## git clone
-Download your repository where you are with your console  
+Permet de télécharger un répertoire git
 
 ```
  git clone url_of_my_project
 ```
 
-For example if you would like download this project you can execute :
+Par exemple si vous voulez télécharger mon projet vous pouvez exécuter la commande suivante :  
 
 ```
  git clone https://github.com/SamuelPelletier/tuto-Git.git
 ```
 
 ## git add
-Add file in a commit.
+Ajoute un fichier dans un commit.  
 
 ```
 git add /path/to/filename
 ```
 
-A usefull option of this command is all.  
-Add all files who are modified or untracked.
+Une option très utile est le all
+Ajoute tous les fichiers modifiers ou non traqués au commit
 ```
 git add -A
 ```
 
 ## git commit
 
-Close and named the commit.  
-When the commit is closed, git add command appends file in a new commit.
+Ferme et nomme un commit
+Quand un commit est fermé, la commande git add ajoute dans un nouveau commit.  
 
 ```
 git commit -m"my commit title"
@@ -327,74 +326,87 @@ git commit -m"my commit title"
 
 ## git push
 
-Send all commits to our version manager platform.  
+Envoit tous les commits a votre platerforme de versionning
 
 ```
 git push
 ```
+
+## git fetch
+
+Récupére tous les nouveaux commits
+
+```
+git fetch
+```
+
 ## git pull
 
-Get all new commits from your version manager platform. 
+Récupére tous les nouveaux commits depuis votre plateforme de versionning et les fusionnes avec la branche.  
 
 ```
 git pull
 ```
 
-Becarefull you can't pull if you are some files not committed.
+Attention vous ne pouvez faire de git pull si vous avez des fichiers modifiés.  
 
 ## git checkout
 
-Change your position to another branch.
+Change votre position (HEAD) vers une autre branche ou un commit
 
 ```
-git merge my_branch
+git checkout my_branch
+```
+```
+git checkout id_commit
 ```
 
-If you add -b parameter, you create a new branch (In french : tiret b comme bouvelle branche)
+Si vous ajoutez -b en paramètre, vous crééez une nouvelle branche ( -b comme **b**ouvelle branche)
 
 ```
-git merge -b my_branch
+git checkout -b my_branch
 ```
 
 ## git merge
 
-Merge a branch with another branch. the branch where you are will be merge with the branch in parameter.
+Fusionne une branche avec une autre. On fusionne la branche sur laquelle vous vous trouvez avec celle en paramètre.  
 
 ```
 git merge my_branch
 ```
 
-Becarefull you can rise conflicts.
+Attention vous pouvez obtenir des conflits lors de cette commande.  
 
 ## git rebase
 
-Replay all commits of a branch on another branch.  
-The result of this command is like git merge.
+Rejoue tous les commits d'une branche à la fin d'une autre branche.  
+Le résultat de cette commande est proche de celui d'un merge.   
 
 ```
 git rebase branch_to_bring_back
 ```
 
-Becarefull you can rise conflicts.
-
 <br><br><br><br>
-For the Windows guys : 
-- Right click on your desktop
-- Choose **Git Bash Here**
 
-For the Linux player : 
-- Just open a command line
+# Tutoriel
 
-From here it's the same work if you are pro Windows or a Linux priest :pray:
+Pour les Windowsiens : 
+- Clique droit sur votre bureau
+- Choisissez **Git Bash Here**
 
-We will import your repository with the follwing command
+Pour les petits joueurs de Linux : 
+- Ouvrez simplement une invite de commande
+
+A partir d'ici il n'y a pas de différence que vous soyez un pro Windows ou un prêtre de Linux :pray:  
+
+Vous allez importer le répertoire avec la commande suivante :  
 
 ```
 git clone my_git_repo_url
 ```
-Nice you have write your first git command ! 🎉
+Félicitation vous avez taper votre première commande git ! 🎉
 
-Let's go in this great folder 
+En avant dans votre répertoire git
 ```
 cd tutogit
 ```

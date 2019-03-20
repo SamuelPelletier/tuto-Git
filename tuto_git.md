@@ -194,7 +194,6 @@ A parent of commit is the previous version of a commit.
 <img src="assets/commit-and-tree.png">  
 
 In this schema *98ca9* is the reference of the commit.  
-A commit construct a tree of files references. In tree we find only the list of modifing files
 
 To create a commit, we may follow this three steps :  
 1) Add files to the commit tree where we would like save modifications (git add)
@@ -260,12 +259,12 @@ In this example, we would like to merge *iss53* in *master* but we have a confli
 ## Command Git
 
 ## git status
-Display the state of your git project
+Display your state and the state of your place (commit, branch)
 
 ```
 git status
 ```
-The following response is the simplest response
+The following response is the simplest response.  
 ```
 On branch master
 Your branch is up to date with 'origin/master'.
@@ -281,8 +280,7 @@ We will look line by line this response :
    *origin* represent your version manager platform  
    *origin/master* represent the branch with the name *master* in your version manager platform  
 3) *nothing to commit, working tree clean*  
-   Nothing to commit means you are any modify files  
-   Working tree clean means the same things in this case
+   This sentence means you are any modify files  
    
 
 If you aren't in a git project the following error will be display
@@ -291,7 +289,7 @@ fatal: not a git repository (or any of the parent directories): .git
 ```
 
 ## git clone
-Download your repository where you are with your console  
+Download your repository  
 
 ```
  git clone url_of_my_project
@@ -319,7 +317,7 @@ git add -A
 ## git commit
 
 Close and named the commit.  
-When the commit is closed, git add command appends file in a new commit.
+When a commit is closed, git add command appends file in a new commit.
 
 ```
 git commit -m"my commit title"
@@ -332,9 +330,18 @@ Send all commits to our version manager platform.
 ```
 git push
 ```
-## git pull
+
+## git fetch
 
 Get all new commits from your version manager platform. 
+
+```
+git fetch
+```
+
+## git pull
+
+Get all new commits from your version manager platform and merge with the branch. 
 
 ```
 git pull
@@ -344,21 +351,24 @@ Becarefull you can't pull if you are some files not committed.
 
 ## git checkout
 
-Change your position to another branch.
+Change your position to another branch or a commit.
 
 ```
-git merge my_branch
+git checkout my_branch
+```
+```
+git checkout id_commit
 ```
 
-If you add -b parameter, you create a new branch (In french : tiret b comme bouvelle branche)
+If you add -b parameter, you create a new branch
 
 ```
-git merge -b my_branch
+git checkout -b my_branch
 ```
 
 ## git merge
 
-Merge a branch with another branch. the branch where you are will be merge with the branch in parameter.
+Merge a branch with another branch. The branch where you are will be merge with the branch in parameter.
 
 ```
 git merge my_branch
@@ -368,16 +378,17 @@ Becarefull you can rise conflicts.
 
 ## git rebase
 
-Replay all commits of a branch on another branch.  
+Replay all commits of a branch at the end of another branch.  
 The result of this command is like git merge.
 
 ```
 git rebase branch_to_bring_back
 ```
 
-Becarefull you can rise conflicts.
-
 <br><br><br><br>
+
+# Tutoriel
+
 For the Windows guys : 
 - Right click on your desktop
 - Choose **Git Bash Here**
@@ -387,14 +398,14 @@ For the Linux player :
 
 From here it's the same work if you are pro Windows or a Linux priest :pray:
 
-We will import your repository with the follwing command
+We will import your repository with the following command
 
 ```
 git clone my_git_repo_url
 ```
 Nice you have write your first git command ! 🎉
 
-Let's go in this great folder 
+Let's go to your great folder 
 ```
 cd tutogit
 ```
