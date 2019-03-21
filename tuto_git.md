@@ -420,7 +420,7 @@ git config --global user.name "my_username"
 ```
 git config --global user.email "my@email.com"
 ```
-We can check our repository with git status
+We can check our repository with git status with the following command
 ```
 git status
 ```
@@ -446,10 +446,10 @@ nothing added to commit but untracked files present (use "git add" to track)
 ```
 
 Git tells us we have an untracked file named *index.html*.  
-If you have a colorated console, you can note index.html is in red, red means your file isn't in a commit.   
+If you have a colorated console, you can note *index.html* is in red, red means your file isn't in a commit.   
 It says too, *nothing added to commit* this sentence means our commit is empty.  
 But it advises *use "git add \<file>..." to include in what will be committed*.  
-In order to save the creation of our index.html, we must use the command advise and below.
+In order to save the creation of our *index.html*, we must use the command advise and below.
 
 In our case we add only *index.html* you can execute one of the following command :  
 
@@ -492,7 +492,8 @@ git push
 
 Just with the commands before you can work alone on your one compture. 😢  
 
-If you would like work on a git project alone but on many computer you have needed the following command :  
+We will see how work with other people.  
+Use the following command for bring back your modification :  
 ```
 git pull
 ```
@@ -515,7 +516,7 @@ Step 3 : Get back your code on your second computer for work
 <br><br>
 
 Now you have found a friend to work with you.  
-No problem, we will create two branchs, one for you and one for your friend.  
+We will create two branchs, one for you and one for your friend.  
 If you haven't a friend we will simulate one.  
   
 I present you :  

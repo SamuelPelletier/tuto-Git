@@ -411,31 +411,30 @@ En avant dans votre répertoire git
 cd tutogit
 ```
 
-You have just download a git project, now we can begin to manage our git project.  
-You can note you have already a folder name *.git*. This folder store all your modify in your git project.
+Vous venez de télécharger un projet git, vous pouvez mainetnant commencez à l'utiliser.  
+Vous pouvez remarqué que vous avez déjà un dossier *.git*. Ce dossier sauvegarder toute les modifications faites sur votre projet.
 
-We will configure our username and our email
+Vous devez dans un premier temps configurer votre pseudo et votre email.  
 ```
 git config --global user.name "my_username"
 ```
 ```
 git config --global user.email "my@email.com"
 ```
-We can check our repository with git status
+Vous pouvez vérifier l'état de votre projet avec la commande suivante
 ```
 git status
 ```
 
-We will create a new file in our folder.
+Vous allez créé un nouveau fichier dans votre dossier
 ```
 touch index.html
 ```
 
-We will try again git status for see the difference.
+Ensuite nous allons vérifier ce qui a changé dans git status
 ```
 git status
 ```
-We will be interested in this response to the previous one.
 
 ```
 Untracked files:
@@ -446,28 +445,29 @@ Untracked files:
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 
-Git tells us we have an untracked file named *index.html*.  
-If you have a colorated console, you can note index.html is in red, red means your file isn't in a commit.   
-It says too, *nothing added to commit* this sentence means our commit is empty.  
-But it advises *use "git add \<file>..." to include in what will be committed*.  
-In order to save the creation of our index.html, we must use the command advise and below.
+Git vous dis que vous avez des fichiers non traqués nommé *index.html*.  
+Si vous avez une console avec de la coloration syntaxique, vous remarquez que *index.html* est en rouge, le rouge vous indique que le fichier n'est pas dans un commit.   
+Il vous dis aussi, *nothing added to commit* cette phrase signifie que votre commit est vide.  
+Mais il vous conseille *use "git add \<file>..." to include in what will be committed*.  
+Dans ce cas pour sauvegardé la création de votre *index.html*, vous devez utiliser la commande recomandé par git et qui est écrit plus bas.
 
-In our case we add only *index.html* you can execute one of the following command :  
+Vous n'avez que a ajouté *index.html* avec une des commandes suivante :  
+command :  
 
 ```
 git add index.html
 ```
-or
+ou
 ```
 git add -A
 ```
 <br>
 
-We will check the new git status  
+Vous pouvez de nouveau vérifier l'état de votre projet  
 ```
 git status
 ```
-You should get this response
+Vous devriez avoir cette réponse
 ```
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
@@ -475,51 +475,52 @@ Changes to be committed:
         new file:   index.html
 ```
 
-We observe *index.html* is in *Changes to be comitted* so *index.html* is in the file list will be send to our version manager platform, its color change to green for represent your file in a commit  
-Git informs us that we can rollback our git add with git reset, we will see this command after.
+Vous observez que *index.html* est dans *Changes to be comitted* donc il va pouvoir être envoyé à votre plateforme de versionning, ça couleur est passé en vert car votre fichier est  maintenant dans un commit.  
+Git vous informe que vous pouvez revenir en arriére grâce à la commande git reset.  
 
-Now we have one file in our commit but the commit is open yet.  
-We may close the commit to send it to our version manager platform  
+Maintenant vous avez un fichier dans votre commit mais il est toujours ouvert.    
+Vous devez le fermer avant de l'envoyer à votre plateforme de versionning.  
 
-In our case we create our first commit
+Dans votre cas c'est votre premier commit
 ```
 git commit -m'First commit with index.html'
 ```
 
-We will send our new creation file to our version manager platform  
+Vous allez pouvoir envoyer votre création de fichier à votre plateforme
 ```
 git push
 ```
 
-Just with the commands before you can work alone on your one compture. 😢  
+Avec seulement les commandes précédentes vous êtes capables de travailler mais seul sur un seul ordinateur. 😢  
 
-If you would like work on a git project alone but on many computer you have needed the following command :  
+Nous verrons comment travailler à plusieurs.
+Vous pouvez utiliser la commande suivant pour ramener vos modifications:  
 ```
 git pull
 ```
 
-Before you start worked on another computer, you may use this command to get back your code on this computer.  
+Avant de commencer a travailler sur un autre ordinateur, il vous faut connaitre comment ramener du code depuis votre plateforme de versionning
 
-Step 1 : Code on your first computer  
+Step 1 : Travailler sur votre premier ordinateur
 <img src='assets/work-computer1.png'>
 
 <br><br>
 
-Step 2 : Send your code to your version manager platform  
+Step 2 : Envoyer les modifications à votre plateforme de versionning
 <img src='assets/work-manager.png'>
 
 <br><br>
 
-Step 3 : Get back your code on your second computer for work   
+Step 3 : Ramener les modifications sur votre second ordinateur   
 <img src='assets/work-computer2.png'>
 
 <br><br>
 
-Now you have found a friend to work with you.  
-No problem, we will create two branchs, one for you and one for your friend.  
-If you haven't a friend we will simulate one.  
+Maintenant il vous faut trouver un ami pour travailler avec vous.  
+Vous allez créé deux branches une pour vous et une pour votre ami.  
+Si vous n'en avez pas ne vous inquietez pas, vous pouvez en simulez un.  
   
-I present you :  
+Je vous présente :   
 <br>
 
 <img style="width:100px;height:auto;margin-left:20px;" src='assets/Companion Cube.png'>  
@@ -536,7 +537,7 @@ git checkout -b my_branch
 git checkout -b my_companion_cube_branch
 ```
 
-You are on the companion cube branch, we will simulate a collaborative work.  
+Vous êtes sur la branche de votre companion cube, vous allez simuler une collaboration avec lui.  
 
 ```
 touch companion_cube.html
@@ -553,22 +554,22 @@ git push
 
 <br>
 
-Now we will return on your branch and get back the modifications create by your new friend.  
+Maintenant vous allez retourner sur votre branche et ramener les modifications faites par votre ami.  
 ```
 git checkout my_branch
 ```
 
-We will use git merge to merge your friend branch into your branch.  
+Vous allez utiliser git merge pour fusionner la branche de votre ami dans votre branche.  
 
 ```
 git merge my_companion_cube_branch
 ```
 
-Now your branch is at the same progress as your friend.  
+Maintenant votre branche a le même état de progression que votre ami.  
 
-It was easy but it's not always the case. We will see conflicts.  
+C'est facile mais c'est pas toujours le cas. Nous allons voir les conflits.  
 
-We will write something in our file :  
+Vous allez écrire quelque chose dans votre fichier :   
 ```
 echo "add some text" >> index.html
 ```
@@ -597,7 +598,7 @@ git commit -m'Add text in index.html'
 git push
 ```
 
-We will try to merge these two branchs like before.
+Vous allez essayer de fusionner les deux branches comme précédement.  
 ```
 git merge my_branch
 ```
@@ -607,7 +608,7 @@ CONFLICT (add/add): Merge conflict in index.html
 Automatic merge failed; fix conflicts and then commit the result.
 ```
 
-Check the status of your branch :  
+Vérifier l'état de votre branche :  
 ```
 git status
 ```
@@ -628,21 +629,21 @@ Unmerged paths:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-You may resolve the conflict to continue.  
+Vous devez résoudre le conflit afind e continuer.  
 
-Once the conflict is fixed, add your modification to the commit : 
+Une fois le conflit résolue, ajouter la modification dans le commit :  
 ```
 git add -A
 ```
-or 
+ou  
 ```
 git add -index.html
 ```
 
-Close the commit with :  
+Fermer le commit avec :  
 ```
 git commit
 ```
 
-When Vim editor opens juste press enter or you can left with *:q*.  
+Quand l'éditeur Vim s'ouvre, il vous suffit d'appuyer sur entrer, sinon vous pouvez taper *:q*.  
 
