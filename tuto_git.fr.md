@@ -201,7 +201,7 @@ Pour créé un commit, vous devez suivre les étapes suivantes :
 2) Nommer, verouiller et sauvegarder le commit (git commit)
 3) Envoyer les modifications dans votre platerfome de versionning (git push)
 
-<img src="assets/commit cycle life.png">  
+<img src="assets/Commit cycle life.png">  
 
 ## Conflit
 
